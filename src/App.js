@@ -14,6 +14,14 @@ class App extends React.Component {
         {id:4, done: false, text: 'Не забыть поспать'}
       ]
     }
+
+  }
+
+  toggleTask = (id) => {
+    const obj = {...this.state};
+    obj.data[id-1].done = !obj.data[id-1].done;
+    console.log(obj);
+    this.setState(obj);
   }
 
   render() {
@@ -25,6 +33,7 @@ class App extends React.Component {
           done={this.state.data[0].done}
           text={this.state.data[0].text}
           id={this.state.data[0].id}
+          click={this.toggleTask}
           />
       </div>
     );
