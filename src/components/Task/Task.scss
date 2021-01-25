@@ -13,11 +13,24 @@
         background-color: #F5D3F360;
     }
 
+    &--checked &__img{
+        opacity: 1;
+    }
+
     &__checkbox {
+        display: flex;
+
         width: 2rem;
         height: 2rem;
         box-sizing: border-box;
         border: 1.5px solid #000;
+    }
+
+    &__img {
+        width: 1.5rem;
+        height: auto;
+        margin: auto auto;
+        opacity: 0;
     }
 
     &__text {

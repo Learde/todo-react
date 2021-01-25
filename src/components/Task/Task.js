@@ -1,5 +1,5 @@
 import './Task.scss';
-import 'checked.svg';
+import check from './checked.svg';
 import React from 'react';
 
 const Task = (props) => {
@@ -8,8 +8,10 @@ const Task = (props) => {
 		classList += ' Task--checked';
 	}
 	return (
-		<div className={classList}>
-			<div className="Task__checkbox" onClick={props.click.bind(this, props.id)}></div>
+		<div className={classList} onClick={props.click.bind(this, props.id)}>
+			<div className="Task__checkbox">
+				<img src={check} className="Task__img" alt="X" />
+			</div>
 			<p className="Task__text">{props.text}</p>
 		</div>
 	);

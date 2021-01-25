@@ -11,7 +11,8 @@ class App extends React.Component {
         {id:1, done: false, text: 'Погладить кота'},
         {id:2, done: false, text: 'Сделать себе чай'},
         {id:3, done: false, text: 'Сходить в душ'},
-        {id:4, done: false, text: 'Не забыть поспать'}
+        {id:4, done: false, text: 'Не забыть поспать'},
+        {id:5, done: false, text: 'Посмотреть винкс'}
       ]
     }
 
@@ -19,8 +20,18 @@ class App extends React.Component {
 
   toggleTask = (id) => {
     const obj = {...this.state};
-    obj.data[id-1].done = !obj.data[id-1].done;
-    console.log(obj);
+    let k = -1;
+    let toggle = true;
+    obj.data.forEach((val,i) => {
+      if (toggle && val.id == id) {
+        k = i;
+        toggle = false;
+      }
+    });
+    if (k != -1) obj.data[k].done = !obj.data[k].done;
+    
+    // obj.data.sort((a) => a.done);
+
     this.setState(obj);
   }
 
