@@ -23,12 +23,12 @@ class App extends React.Component {
     let k = -1;
     let toggle = true;
     obj.data.forEach((val,i) => {
-      if (toggle && val.id == id) {
+      if (toggle && val.id === id) {
         k = i;
         toggle = false;
       }
     });
-    if (k != -1) obj.data[k].done = !obj.data[k].done;
+    if (k !== -1) obj.data[k].done = !obj.data[k].done;
     
     // obj.data.sort((a) => a.done);
 
@@ -37,8 +37,9 @@ class App extends React.Component {
 
   render() {
     let listOfTasks = [];
+    let listOfCompletedTasks = [];
     this.state.data.forEach( (val,i) => {
-      listOfTasks[i] = (
+      let el = (
         <Task
           className="App__task"
           done={val.done}
@@ -48,12 +49,28 @@ class App extends React.Component {
           click={this.toggleTask} 
         />
       );
-    } )
+      if (!val.done) {
+        listOfTasks.push(el);
+      } else {
+        listOfCompletedTasks.push(el);
+      }
+    });
+
+
+
+    if (listOfTasks.length === 0) {
+      listOfTasks = <p className="App__text">There are no tasks</p>;
+    }
+    if (listOfCompletedTasks.length === 0) {
+      listOfCompletedTasks = <p className="App__text">There are no completed tasks yet</p>;
+    }
 
     return (
       <div className="App">
         <h1 className="App__heading">TODO List</h1>
         {listOfTasks}
+        <h2 className="App__heading App__heading--bordered">Completed</h2>
+        {listOfCompletedTasks}
       </div>
     );
   };
