@@ -25,16 +25,24 @@ class App extends React.Component {
   }
 
   render() {
+    let listOfTasks = [];
+    this.state.data.forEach( (val,i) => {
+      listOfTasks[i] = (
+        <Task
+          className="App__task"
+          done={val.done}
+          text={val.text}
+          id={val.id}
+          key={val.id}
+          click={this.toggleTask} 
+        />
+      );
+    } )
+
     return (
       <div className="App">
         <h1 className="App__heading">TODO List</h1>
-        <Task
-          className="App__task"
-          done={this.state.data[0].done}
-          text={this.state.data[0].text}
-          id={this.state.data[0].id}
-          click={this.toggleTask}
-          />
+        {listOfTasks}
       </div>
     );
   };
